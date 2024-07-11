@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>my event test 01</title>
+</head>
+<body>
+    <h1>my event test 01</h1>
+    <input type="text" id="num1" placeholder="숫자를 입력하세요">
+    <select id="opr">
+        <option value="">연산자를 선택하세요</option>
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+        <option value="/">/</option>
+        <option value="%">%</option>
+    </select>
+    <input type="text" id="num2" placeholder="숫자를 입력하세요">
+    =
+    <input type="text" id="result">
+    <!--
+    양쪽에 숫자를 입력 후 연산자를 선택하면 계산결과를 id="result"에 표시
+    -->
+    <!--
+    이벤트를 등록해야한다 <select onchange="">
+        -->
+    <script>
+        //id="opr" 선택해야한다 -> document.getElementById("opr")
+        //id="opr" 선택해야한다 -> document.querySelector("#opr")
+        let opr = document.getElementById("opr")
+        opr.onchange = function(){//opr선택이 바뀌면
+            //숫자2개 추출
+            let num1 = document.getElementById("num1").value-0
+            let num2 = document.getElementById("num2").value-0
+            //alert(num1+","+num2+","+this.value)//this=id(opr)=연산자
+            let result = 0;
+            if(this.value == "+"){
+                //연산시 자동형변환. 문자열+숫자=>문자열결합
+                //문자열-숫자=>문자열을 숫자로 변환
+                result = num1 + num2
+            }else if(this.value == "-"){
+                result = num1 - num2
+            }else if(this.value == "*"){
+                result = num1 * num2
+            }else if(this.value == "/"){
+                result = num1 / num2
+            }else if(this.value == "%"){
+                result = num1 % num2
+            }else{
+                result = "연산자를 선택하세요"
+            }
+            document.getElementById("result").value = result
+        }
+    </script>
+</body>
+</html>

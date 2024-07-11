@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>find_number_gui</title>
+</head>
+<body>
+    <h1>find_number_gui</h1>
+    <div id="container"></div>
+
+    <script>
+        let r = Math.floor(Math.random()*100)+1
+        function make_buttons(){
+            let s = ''
+            for(let i=1; i<=100; i++){
+                s += "<button>"+i+"</button>"
+            }
+            document.getElementById("container").innerHTML = s;
+        }
+        function set_events(){
+            let btns = document.querySelectorAll("#container > button")
+            for(let b of btns){
+                b.onclick = function(){
+                    let click_num = this.innerText
+                    if(click_num == r){
+                        this.innerText = "정답"
+                    }else if(click_num < r){
+                        this.innerText = "UP"
+                        for(let i=0;i<click_num; i++){
+                            btns[i].disabled="disabled" //비활성화
+                            // btns[i].style.display = "none"
+                        }
+                    }else{
+                        this.innerText = "DN"
+                        for(let i=(click_num-1);i<btns.length; i++){
+                            btns[i].disabled="disabled" //비활성화
+                            // btns[i].style.display = "none"
+                        }
+                    }
+                }
+            }
+        }
+        make_buttons();
+        set_events()
+        
+    </script>
+    <!--
+    퀴즈1 아래코드를 작성하세요.
+    1. find_number_gui.html 생성
+    2. 화면에 "게임시작" 버튼과 1~100까지의 버튼만든다.
+    3. "게임시작" 버튼 누르면 1~100사이 난수를 생성하여 r에 저장한다.
+    4. 100개의 버튼에 이벤트를 등록한다. 
+    5. 동작은 클릭한 버튼의 숫자와 r을 비교하여 
+        버튼숫자와 r과 같으면 "정답", 
+        r이 버튼숫자 크면 클릭한 숫자포함 작은 숫자버튼들을 삭제한다.
+        r이 버튼숫자 작으면 클릭한 숫자포함 큰 숫자버튼들을 삭제한다.
+    6. 시도횟수를 적당한 곳에 표시한다. 숫자버튼을 누르때마다 시도횟수는 1씩 올라간다.
+        
+-->    
+</body>
+</html>
